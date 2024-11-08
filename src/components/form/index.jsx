@@ -26,6 +26,11 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             return toast.warn("Preencha todos os campos!");
         }
 
+        const taskExists = await checkTaskName(task.name.value);
+        if (taskExists) {
+            return toast.error("Já existe uma tarefa com esse nome.");
+        }
+
         if (onEdit) {
             await axios
                 .put("https://tasklyapi-ea0eb614f538.herokuapp.com/" + onEdit.id, {
@@ -55,6 +60,17 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
         setOnEdit(null);
         getTasks();
+    };
+
+    const checkTaskName = async (name) => {
+        try {
+            const response = await axios.get("https://tasklyapi-ea0eb614f538.herokuapp.com/");
+            const existingTasks = response.data;
+            return existingTasks.some((task) => task.name.toLowerCase() === name.toLowerCase());
+        } catch (error) {
+            toast.error("Erro ao verificar tarefas existentes.");
+            return false;
+        }
     };
 
     return (
