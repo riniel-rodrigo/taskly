@@ -15,7 +15,9 @@ function App() {
 
   const getTasks = async () => {
     try {
-      const res = await axios.get("https://tasklyapi-ea0eb614f538.herokuapp.com/");
+      const res = await axios.get(
+        "https://tasklyapi-ea0eb614f538.herokuapp.com/"
+      );
       setTasks(res.data.sort((a, b) => (a.order > b.order ? 1 : -1)));
     } catch (error) {
       toast.error(error);
@@ -27,7 +29,7 @@ function App() {
   }, [setTasks]);
 
   return (
-    <>
+    <S.Area>
       <S.Container>
         <S.Title>TASKLY</S.Title>
         <Form onEdit={onEdit} setOnEdit={setOnEdit} getTasks={getTasks} />
@@ -35,7 +37,7 @@ function App() {
       </S.Container>
       <ToastContainer autoClose={3000} position="bottom-left" />
       <GlobalStyle />
-    </>
+    </S.Area>
   );
 }
 

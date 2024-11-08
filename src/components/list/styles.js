@@ -1,38 +1,76 @@
 import styled from "styled-components";
 
-export const Table = styled.table`
-  width: 100%;
-  max-width: 1120px;
+export const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
   padding: 20px;
-  margin: 20px auto;
-  box-shadow: 0px 0px 5px #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  word-break: break-all;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
 `;
 
-export const Thead = styled.thead``;
+export const Card = styled.div`
+  align-self: center;
+  justify-self: center;
+  width: 17rem;
+  background-color: #eeece8;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
 
-export const Tbody = styled.tbody``;
-
-export const Tr = styled.tr``;
-
-export const Th = styled.th`
-  text-align: start;
-  border-bottom: inset;
-  padding-bottom: 5px;
-
-  @media (max-width: 500px) {
-    ${(props) => props.onlyWeb && "display: none"}
+  &:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
   }
 `;
 
-export const Td = styled.td`
-  padding-top: 15px;
-  text-align: ${(props) => (props.alignCenter ? "center" : "start")};
-  width: ${(props) => (props.width ? props.width : "auto")};
+export const CardContent = styled.div`
+  flex-grow: 1;
+`;
 
-  @media (max-width: 500px) {
-    ${(props) => props.onlyWeb && "display: none"}
+export const TaskName = styled.h3`
+  font-size: 1em;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const TaskDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #666666;
+  font-size: 0.9em;
+`;
+
+export const TaskPrice = styled.div`
+  margin-bottom: 4px;
+`;
+
+export const TaskDate = styled.div`
+  color: #999999;
+`;
+
+export const CardActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+
+  svg {
+    color: #888888;
+    margin-left: 12px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #588157;
+    }
   }
 `;

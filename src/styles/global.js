@@ -14,9 +14,9 @@ const GlobalStyle = createGlobalStyle`
         justify-content: center;
         width: 100vw;
         height: 100vh;
-        background-color: #f2f2f2;
+        background-color: #d1d5c3;
     }
 
 `;
 
-export default  GlobalStyle;
+export default GlobalStyle;

@@ -10,7 +10,6 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
     useEffect(() => {
         if (onEdit) {
             const task = ref.current;
-
             task.name.value = onEdit.name;
             task.price.value = onEdit.price;
             task.deadline.value = onEdit.deadline;
@@ -23,12 +22,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
         const task = ref.current;
 
-        if (
-            !task.name.value ||
-            !task.price.value ||
-            !task.deadline.value ||
-            !task.order.value
-        ) {
+        if (!task.name.value || !task.price.value || !task.deadline.value || !task.order.value) {
             return toast.warn("Preencha todos os campos!");
         }
 
@@ -64,27 +58,30 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
     };
 
     return (
-        <S.FormContainer ref={ref} onSubmit={handleSubmit}>
-            <S.InputArea>
-                <S.Label>name</S.Label>
-                <S.Input name="name" />
-            </S.InputArea>
-            <S.InputArea>
-                <S.Label>Preço</S.Label>
-                <S.Input name="price" />
-            </S.InputArea>
-            <S.InputArea>
-                <S.Label>Data limite</S.Label>
-                <S.Input name="deadline" type="date" />
-            </S.InputArea>
-            <S.InputArea>
-                <S.Label>Ordem</S.Label>
-                <S.Input name="order" />
-            </S.InputArea>
-
-
-            <S.Button type="submit">SALVAR</S.Button>
-        </S.FormContainer>
+        <S.Container>
+            <div>
+                <S.Title>{onEdit ? "Editar tarefa:" : "Adicionar tarefa:"}</S.Title>
+                <S.FormContainer ref={ref} onSubmit={handleSubmit}>
+                    <S.InputArea>
+                        <S.Label>Nome</S.Label>
+                        <S.Input name="name" />
+                    </S.InputArea>
+                    <S.InputArea>
+                        <S.Label>Preço</S.Label>
+                        <S.Input name="price" />
+                    </S.InputArea>
+                    <S.InputArea>
+                        <S.Label>Data limite</S.Label>
+                        <S.Input name="deadline" type="date" />
+                    </S.InputArea>
+                    <S.InputArea>
+                        <S.Label>Ordem</S.Label>
+                        <S.Input name="order" />
+                    </S.InputArea>
+                    <S.Button type="submit">SALVAR</S.Button>
+                </S.FormContainer>
+            </div>
+        </S.Container>
     );
 };
 
