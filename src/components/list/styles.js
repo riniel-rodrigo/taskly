@@ -74,3 +74,32 @@ export const CardActions = styled.div`
     }
   }
 `;
+
+export const ToastDelete = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  div {
+    justify-self: end;
+    align-self: end;
+    display: flex;
+    gap: 1rem;
+  }
+`;
+
+export const ButtonToast = styled.div`
+    padding: 0.3rem 1rem;
+    background-color: ${({ variant }) =>
+      variant === "danger" ? "#d9534f" : "#588157"};
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: ${({ variant }) =>
+        variant === "danger" ? "#c9302c" : "#4b6f5e"};
+    }
+`;

@@ -11,26 +11,46 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
     };
 
     const handleDelete = async (id) => {
-        await axios
-            .delete("https://tasklyapi-ea0eb614f538.herokuapp.com/" + id)
-            .then(({ data }) => {
-                const newArray = tasks.filter((task) => task.id !== id);
-                setTasks(newArray);
-                toast.success(data);
-            })
-            .catch(({ data }) => toast.error(data));
+        toast(
+            ({ closeToast }) => (
+                <S.ToastDelete>
+                    <p>Tem certeza que deseja excluir esta tarefa?</p>
+                    <div>
+                        <S.ButtonToast
+                            onClick={async () => {
+                                await axios
+                                    .delete("https://tasklyapi-ea0eb614f538.herokuapp.com/" + id)
+                                    .then(({ data }) => {
+                                        const newArray = tasks.filter((task) => task.id !== id);
+                                        setTasks(newArray);
+                                        toast.success(data);
+                                    })
+                                    .catch(({ data }) => toast.error(data));
 
-        setOnEdit(null);
+                                setOnEdit(null);
+                                closeToast();
+                            }}
+                        >
+                            Sim
+                        </S.ButtonToast>
+                        <S.ButtonToast variant="danger" onClick={closeToast}>Não</S.ButtonToast>
+                    </div>
+                </S.ToastDelete>
+            ),
+            { autoClose: false }
+        );
     };
 
     return (
         <S.CardContainer>
             {tasks.map((item, i) => (
-                <S.Card key={i}>
+                <S.Card key={i} >
                     <S.CardContent>
                         <S.TaskName>{item.name}</S.TaskName>
                         <S.TaskDetails>
-                            <S.TaskPrice>Preço: {item.price}</S.TaskPrice>
+                            <S.TaskPrice style={{ color: item.price >= 1000 ? "#b69121" : "inherit" }}>
+                                Preço: {item.price}
+                            </S.TaskPrice>
                             <S.TaskDate>
                                 Data limite: {new Date(item.deadline).toLocaleDateString("pt-BR")}
                             </S.TaskDate>
