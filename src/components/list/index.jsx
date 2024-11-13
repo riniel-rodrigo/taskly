@@ -19,7 +19,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                         <S.ButtonToast
                             onClick={async () => {
                                 await axios
-                                    .delete("https://tasklyapi-ea0eb614f538.herokuapp.com/" + id)
+                                    .delete("https://api-taskly-production.up.railway.app/" + id)
                                     .then(({ data }) => {
                                         const newArray = tasks.filter((task) => task.id !== id);
                                         setTasks(newArray);

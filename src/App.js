@@ -16,7 +16,7 @@ function App() {
   const getTasks = async () => {
     try {
       const res = await axios.get(
-        "https://tasklyapi-ea0eb614f538.herokuapp.com/"
+        "https://api-taskly-production.up.railway.app/"
       );
       setTasks(res.data.sort((a, b) => (a.order > b.order ? 1 : -1)));
     } catch (error) {

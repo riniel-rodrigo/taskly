@@ -33,7 +33,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
         if (onEdit) {
             await axios
-                .put("https://tasklyapi-ea0eb614f538.herokuapp.com/" + onEdit.id, {
+                .put("https://api-taskly-production.up.railway.app/" + onEdit.id, {
                     name: task.name.value,
                     price: task.price.value,
                     deadline: task.deadline.value,
@@ -43,7 +43,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                 .catch(({ data }) => toast.error(data));
         } else {
             await axios
-                .post("https://tasklyapi-ea0eb614f538.herokuapp.com/", {
+                .post("https://api-taskly-production.up.railway.app/", {
                     name: task.name.value,
                     price: task.price.value,
                     deadline: task.deadline.value,
@@ -64,7 +64,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
     const checkTaskName = async (name) => {
         try {
-            const response = await axios.get("https://tasklyapi-ea0eb614f538.herokuapp.com/");
+            const response = await axios.get("https://api-taskly-production.up.railway.app/");
             const existingTasks = response.data;
             return existingTasks.some((task) => task.name.toLowerCase() === name.toLowerCase());
         } catch (error) {
