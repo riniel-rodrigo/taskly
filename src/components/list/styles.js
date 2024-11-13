@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   padding: 20px;
   width: 100%;
   max-width: 1200px;
@@ -14,14 +14,14 @@ export const CardContainer = styled.div`
 export const Card = styled.div`
   align-self: center;
   justify-self: center;
-  width: 17rem;
+  width: 80%;
   background-color: #eeece8;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 12px;
   transition: box-shadow 0.3s ease;
 
   &:hover {
@@ -41,6 +41,7 @@ export const TaskName = styled.h3`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 `;
 
 export const TaskDetails = styled.div`
@@ -61,7 +62,7 @@ export const TaskDate = styled.div`
 export const CardActions = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 16px;
+  margin-top: 12px;
 
   svg {
     color: #888888;

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { format } from 'date-fns';
 
 import * as S from "./styles";
 
@@ -12,8 +13,10 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             const task = ref.current;
             task.name.value = onEdit.name;
             task.price.value = onEdit.price;
-            task.deadline.value = onEdit.deadline;
+            task.deadline.value = format(new Date(onEdit.deadline), 'yyyy-MM-dd');
             task.order.value = onEdit.order;
+            
+            task.name.focus();  
         }
     }, [onEdit]);
 

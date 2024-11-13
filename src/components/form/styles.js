@@ -8,6 +8,7 @@ export const Title = styled.h2`
 `;
 
 export const FormContainer = styled.form`
+  width: 100%;
   display: flex;
   gap: 2rem;
   align-items: end;
