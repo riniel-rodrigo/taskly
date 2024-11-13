@@ -4,10 +4,9 @@ Taskly é uma aplicação de gerenciamento de tarefas criada com **React**, **No
 
 ## Tecnologias Utilizadas
 
-- **Frontend:** React
-- **Backend:** Node.js com Express
-- **Banco de Dados:** MySQL (hospedado no [Railway](https://railway.app/))
-- **Hospedagem da API:** (hospedado no [Heroku](https://tasklyapi-ea0eb614f538.herokuapp.com/))
+- **Frontend:** `React`
+- **Backend API:** `Node.js` com `Express` (hospedado no [Railway](https://railway.app/invite/B9XCXGB65BY))
+- **Banco de Dados:** `MySQL` (hospedado no [Railway](https://railway.app/invite/B9XCXGB65BY))
 
 ## Pré visualização
 
