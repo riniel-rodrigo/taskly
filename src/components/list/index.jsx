@@ -47,12 +47,18 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                 <S.Card key={i} >
                     <S.CardContent>
                         <S.TaskName>{item.name}</S.TaskName>
+
                         <S.TaskDetails>
+                            <S.TaskId>Identificador: {item.id}</S.TaskId>
+
                             <S.TaskPrice style={{ color: item.price >= 1000 ? "#b69121" : "inherit" }}>
-                                Preço: {item.price}
+                                Custo: R$ {item.price}
                             </S.TaskPrice>
+
                             <S.TaskDate>
-                                Data limite: {new Date(item.deadline).toLocaleDateString("pt-BR")}
+                                Data limite: {
+                                    new Date(item.deadline).toISOString().slice(0, 10).split("-").reverse().join("/")
+                                }
                             </S.TaskDate>
                         </S.TaskDetails>
                     </S.CardContent>

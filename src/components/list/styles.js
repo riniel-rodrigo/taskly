@@ -21,7 +21,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 12px;
+  padding: 10px 15px;
   transition: box-shadow 0.3s ease;
 
   &:hover {
@@ -31,6 +31,10 @@ export const Card = styled.div`
 
 export const CardContent = styled.div`
   flex-grow: 1;
+`;
+
+export const TaskId = styled.div`
+  color: #666666;
 `;
 
 export const TaskName = styled.h3`
@@ -53,10 +57,11 @@ export const TaskDetails = styled.div`
 
 export const TaskPrice = styled.div`
   margin-bottom: 4px;
+  color: #666666;
 `;
 
 export const TaskDate = styled.div`
-  color: #999999;
+  color: #666666;
 `;
 
 export const CardActions = styled.div`

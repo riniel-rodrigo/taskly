@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { format } from 'date-fns';
 
 import * as S from "./styles";
 
@@ -13,10 +12,10 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             const task = ref.current;
             task.name.value = onEdit.name;
             task.price.value = onEdit.price;
-            task.deadline.value = format(new Date(onEdit.deadline), 'yyyy-MM-dd');
+            task.deadline.value = onEdit.deadline;
             task.order.value = onEdit.order;
-            
-            task.name.focus();  
+
+            task.name.focus();
         }
     }, [onEdit]);
 
@@ -30,8 +29,17 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         }
 
         const taskExists = await checkTaskName(task.name.value);
-        if (taskExists) {
+        if (taskExists && (!onEdit || (onEdit && onEdit.name !== task.name.value))) {
             return toast.error("Já existe uma tarefa com esse nome.");
+        }
+
+        if (task.price.value < 0) {
+            return toast.error("O custo da tarefa não pode ser negativo.");
+        }
+
+        const maxCost = 99999999;
+        if (task.price.value > maxCost) {
+            return toast.error(`O custo não pode ser maior que R$${maxCost.toLocaleString()}.`);
         }
 
         if (onEdit) {
@@ -69,6 +77,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         try {
             const response = await axios.get("https://api-taskly-production.up.railway.app/");
             const existingTasks = response.data;
+
             return existingTasks.some((task) => task.name.toLowerCase() === name.toLowerCase());
         } catch (error) {
             toast.error("Erro ao verificar tarefas existentes.");
@@ -86,7 +95,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                         <S.Input name="name" />
                     </S.InputArea>
                     <S.InputArea>
-                        <S.Label>Preço</S.Label>
+                        <S.Label>Custo</S.Label>
                         <S.Input name="price" />
                     </S.InputArea>
                     <S.InputArea>
