@@ -59,6 +59,23 @@ export const Input = styled.input`
   }
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  svg{
+    font-size: 2.2rem;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #AD1025;
+    }
+  }
+`;
+
 export const Button = styled.button`
   display: block;
   align-self: end;

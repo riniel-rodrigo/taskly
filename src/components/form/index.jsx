@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { MdOutlineCancel } from "react-icons/md";
 
 import * as S from "./styles";
 
@@ -85,6 +86,14 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         }
     };
 
+    const handleCancel = () => {
+        setOnEdit(null);
+        ref.current.name.value = "";
+        ref.current.price.value = "";
+        ref.current.deadline.value = "";
+        ref.current.order.value = "";
+    };
+
     return (
         <S.Container>
             <div>
@@ -106,7 +115,12 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                         <S.Label>Ordem</S.Label>
                         <S.Input name="order" />
                     </S.InputArea>
-                    <S.Button type="submit">SALVAR</S.Button>
+                    <S.Buttons>
+                        <S.Button title="Salvar tarefa" type="submit">Salvar</S.Button>
+                        {onEdit && (
+                            <MdOutlineCancel title="Cancelar edição" onClick={handleCancel} />
+                        )}
+                    </S.Buttons>
                 </S.FormContainer>
             </div>
         </S.Container>

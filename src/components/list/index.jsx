@@ -35,8 +35,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
     // func order
     const updateTaskOrder = async (updatedTasks) => {
         try {
-            await axios.put("https://api-taskly-production.up.railway.app/reorder", updatedTasks); // Assumindo que o endpoint é esse
-            toast.success("Ordem das tarefas atualizada!");
+            await axios.put("https://api-taskly-production.up.railway.app/reorder", updatedTasks);
         } catch (error) {
             toast.error("Erro ao atualizar a ordem das tarefas.");
         }
@@ -87,7 +86,6 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                         <S.CardHeader>
                             <S.TaskName>{item.name}</S.TaskName>
 
-                            {/* Botões de subir e descer */}
                             <S.ButtonsMoveBox>
                                 <CiCircleChevUp title="Mover para cima" onClick={() => moveUp(item.id, index)} />
                                 <CiCircleChevDown title="Mover para baixo" onClick={() => moveDown(item.id, index)} />
@@ -110,7 +108,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                     </S.CardContent>
                     <S.CardActions>
                         <FaEdit title="Editar" onClick={() => handleEdit(item)} />
-                        <FaTrash title="Editar" onClick={() => handleDelete(item.id)} />
+                        <FaTrash title="Excluir" onClick={() => handleDelete(item.id)} />
                     </S.CardActions>
                 </S.Card>
             ))}
