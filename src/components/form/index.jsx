@@ -29,7 +29,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             return toast.warn("Preencha todos os campos!");
         }
 
-        const taskExists = await checkTaskName(task.name.value);
+        const taskExists = await checkTaskName(task.name.value, onEdit ? onEdit.id : null);
         if (taskExists && (!onEdit || (onEdit && onEdit.name !== task.name.value))) {
             return toast.error("Já existe uma tarefa com esse nome.");
         }
@@ -74,12 +74,14 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         getTasks();
     };
 
-    const checkTaskName = async (name) => {
+    const checkTaskName = async (name, id) => {
         try {
             const response = await axios.get("https://api-taskly-production.up.railway.app/");
             const existingTasks = response.data;
-
-            return existingTasks.some((task) => task.name.toLowerCase() === name.toLowerCase());
+    
+            return existingTasks.some(
+                (task) => task.name === name && task.id !== id
+            );
         } catch (error) {
             toast.error("Erro ao verificar tarefas existentes.");
             return false;
