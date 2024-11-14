@@ -3,30 +3,30 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 20px;
-  padding-top: 0;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  padding-top: 0;
 `;
 
 export const Card = styled.div`
-  align-self: center;
-  justify-self: center;
-  width: 80%;
-  background-color: #eeece8;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px 15px;
+  align-self: center;
+  justify-self: center;
+  width: 80%;
+  padding: 0.625rem 0.9375rem;
+  background-color: #eeece8;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -42,7 +42,7 @@ export const TaskName = styled.h3`
   font-size: 1em;
   font-weight: 600;
   color: #333333;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -53,11 +53,11 @@ export const TaskDetails = styled.div`
   display: flex;
   flex-direction: column;
   color: #666666;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 `;
 
 export const TaskPrice = styled.div`
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
   color: #666666;
 `;
 
@@ -88,9 +88,9 @@ export const ToastDelete = styled.div`
   gap: 1rem;
 
   div {
+    display: flex;
     justify-self: end;
     align-self: end;
-    display: flex;
     gap: 1rem;
   }
 `;
@@ -101,7 +101,7 @@ export const ButtonToast = styled.div`
     variant === "danger" ? "#d9534f" : "#588157"};
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

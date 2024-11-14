@@ -4,10 +4,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   width: 70vw;
   max-width: 1050px;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 export const Title = styled.h2``;

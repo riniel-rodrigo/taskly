@@ -1,21 +1,28 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0.625rem;
+`;
+
 export const Title = styled.h2`
-  font-size: 17px;
+  display: block;
+  font-size: 1.0625rem;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
   text-align: center;
 `;
 
 export const FormContainer = styled.form`
-  width: 100%;
   display: flex;
+  width: 100%;
   gap: 2rem;
   align-items: end;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
   background-color: #eeece8;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 
   @media (max-width: 1050px) {
     flex-wrap: wrap;
@@ -27,22 +34,24 @@ export const FormContainer = styled.form`
 export const InputArea = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 `;
 
 export const Label = styled.label`
-  font-size: 12px;
+  display: block;
+  font-size: 0.75rem;
   color: #666;
 `;
 
 export const Input = styled.input`
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
+  display: block;
+  padding: 0.5rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
   color: #333;
-  transition: border 0.3s;
   background-color: #eeece8;
+  transition: border 0.3s;
 
   &:focus {
     border-color: #588157;
@@ -51,24 +60,19 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
+  display: block;
   align-self: end;
-  padding: 10px;
-  height: 39px;
-  font-size: 14px;
+  padding: 0.625rem;
+  height: 2.4375rem;
+  font-size: 0.875rem;
   color: #ffffff;
   background-color: #588157;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
     background-color: #3a5a40;
   }
-`;
-
-export const Container = styled.div`
-  padding: 10px;
-  display: flex;
-  justify-content: center;
 `;
