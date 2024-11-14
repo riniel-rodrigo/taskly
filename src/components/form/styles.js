@@ -35,6 +35,7 @@ export const InputArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -52,6 +53,7 @@ export const Input = styled.input`
   color: #333;
   background-color: #eeece8;
   transition: border 0.3s;
+  width: 100%;
 
   &:focus {
     border-color: #588157;

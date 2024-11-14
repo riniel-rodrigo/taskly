@@ -28,6 +28,10 @@ export const Card = styled.div`
   &:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
+
+  @media (max-width: 1050px) {
+    width: 100%;
+  }
 `;
 
 export const CardContent = styled.div`
@@ -124,7 +128,7 @@ export const ButtonsMoveBox = styled.div`
   & svg {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #424A4D;
+    color: #424a4d;
     cursor: pointer;
     transition: color 0.3s ease;
 

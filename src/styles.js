@@ -8,6 +8,18 @@ export const Container = styled.div`
   width: 70vw;
   max-width: 1050px;
   margin-top: 1.25rem;
+
+  @media (max-width: 1050px) {
+    width: 80vw;
+  }
+
+  @media (max-width: 750px) {
+    width: 90vw;
+  }
+
+  @media (max-width: 600px) {
+    width: 95vw;
+  }
 `;
 
 export const Title = styled.h2``;
