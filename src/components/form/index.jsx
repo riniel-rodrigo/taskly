@@ -12,7 +12,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             const task = ref.current;
             task.name.value = onEdit.name;
             task.price.value = onEdit.price;
-            task.deadline.value = onEdit.deadline;
+            task.deadline.value = new Date(onEdit.deadline).toISOString().slice(0, 10);
             task.order.value = onEdit.order;
 
             task.name.focus();

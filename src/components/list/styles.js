@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.75rem;
   padding: 20px;
+  padding-top: 0;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -67,11 +68,11 @@ export const TaskDate = styled.div`
 export const CardActions = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 12px;
+  gap: 0.5rem;
 
   svg {
+    font-size: 1.1rem;
     color: #888888;
-    margin-left: 12px;
     cursor: pointer;
     transition: color 0.3s ease;
 
@@ -95,17 +96,40 @@ export const ToastDelete = styled.div`
 `;
 
 export const ButtonToast = styled.div`
-    padding: 0.3rem 1rem;
+  padding: 0.3rem 1rem;
+  background-color: ${({ variant }) =>
+    variant === "danger" ? "#d9534f" : "#588157"};
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
     background-color: ${({ variant }) =>
-      variant === "danger" ? "#d9534f" : "#588157"};
-    color: white;
-    border: none;
-    border-radius: 8px;
+      variant === "danger" ? "#c9302c" : "#4b6f5e"};
+  }
+`;
+
+export const CardHeader = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+export const ButtonsMoveBox = styled.div`
+  display: flex;
+  gap: 0.3rem;
+
+  & svg {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #424A4D;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: color 0.3s ease;
 
     &:hover {
-      background-color: ${({ variant }) =>
-        variant === "danger" ? "#c9302c" : "#4b6f5e"};
+      color: #588157;
     }
+  }
 `;
