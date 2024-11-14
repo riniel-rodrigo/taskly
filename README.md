@@ -10,7 +10,7 @@ Taskly é uma aplicação de gerenciamento de tarefas criada com **React**, **No
 
 ## Pré visualização
 
-![image](https://github.com/user-attachments/assets/07b85c1f-05ef-405f-8708-467626976d1e)
+![image](https://github.com/user-attachments/assets/b23aef58-2c47-4582-a5f5-21672dd20d64)
 
 ## Acesse aqui
 https://taskly-wine.vercel.app/
