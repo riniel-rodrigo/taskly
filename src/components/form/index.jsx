@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState  } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { MdOutlineCancel } from "react-icons/md";
@@ -7,6 +7,8 @@ import * as S from "./styles";
 
 const Form = ({ getTasks, onEdit, setOnEdit }) => {
     const ref = useRef();
+    const [nameLength, setNameLength] = useState(0); 
+    const maxLength = 100;
 
     useEffect(() => {
         if (onEdit) {
@@ -16,6 +18,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             task.deadline.value = new Date(onEdit.deadline).toISOString().slice(0, 10);
             task.order.value = onEdit.order;
 
+            setNameLength(onEdit.name.length);
             task.name.focus();
         }
     }, [onEdit]);
@@ -45,7 +48,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
         if (onEdit) {
             await axios
-                .put("http://localhost:3000/" + onEdit.id, {
+                .put("https://api-taskly-production.up.railway.app/" + onEdit.id, {
                     name: task.name.value,
                     price: task.price.value,
                     deadline: task.deadline.value,
@@ -55,7 +58,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                 .catch(({ data }) => toast.error(data));
         } else {
             await axios
-                .post("http://localhost:3000/", {
+                .post("https://api-taskly-production.up.railway.app/", {
                     name: task.name.value,
                     price: task.price.value,
                     deadline: task.deadline.value,
@@ -70,15 +73,22 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         task.deadline.value = "";
         task.order.value = "";
 
+        setNameLength(0);
+
         setOnEdit(null);
         getTasks();
     };
 
+    const handleNameChange = (e) => {
+        const currentLength = e.target.value.length;
+        setNameLength(currentLength);
+    };
+
     const checkTaskName = async (name, id) => {
         try {
-            const response = await axios.get("http://localhost:3000/");
+            const response = await axios.get("https://api-taskly-production.up.railway.app/");
             const existingTasks = response.data;
-    
+
             return existingTasks.some(
                 (task) => task.name === name && task.id !== id
             );
@@ -94,6 +104,8 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         ref.current.price.value = "";
         ref.current.deadline.value = "";
         ref.current.order.value = "";
+
+        setNameLength(0);
     };
 
     return (
@@ -103,7 +115,11 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                 <S.FormContainer ref={ref} onSubmit={handleSubmit}>
                     <S.InputArea>
                         <S.Label>Nome</S.Label>
-                        <S.Input name="name" />
+                        <S.Input onChange={handleNameChange} maxLength={maxLength}  name="name" />
+
+                        {nameLength >= maxLength && (
+                            <S.NameWarning>Atingiu o máximo de caracteres.</S.NameWarning>
+                        )}
                     </S.InputArea>
                     <S.InputArea>
                         <S.Label>Custo</S.Label>
@@ -117,7 +133,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                         <S.Label>Ordem</S.Label>
                         <S.Input name="order" />
                     </S.InputArea>
-                    <S.Buttons>
+                    <S.Buttons style={{ alignItems: nameLength >= maxLength ? "center" : "end", marginBottom: nameLength >= maxLength ? "0" : "3px" }}>
                         <S.Button title="Salvar tarefa" type="submit">Salvar</S.Button>
                         {onEdit && (
                             <MdOutlineCancel title="Cancelar edição" onClick={handleCancel} />

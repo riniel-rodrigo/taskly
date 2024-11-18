@@ -18,7 +18,7 @@ export const FormContainer = styled.form`
   display: flex;
   width: 100%;
   gap: 2rem;
-  align-items: end;
+
   padding: 1.25rem;
   border-radius: 0.5rem;
   background-color: #eeece8;
@@ -61,10 +61,16 @@ export const Input = styled.input`
   }
 `;
 
+export const NameWarning = styled.p`
+  color:#b69121;
+  font-size: 0.7rem;
+  white-space: nowrap;
+`;
+
 export const Buttons = styled.div`
   display: flex;
   gap: 1rem;
-  align-items: center;
+  align-items: end;
 
   svg{
     font-size: 2.2rem;
@@ -79,8 +85,6 @@ export const Buttons = styled.div`
 `;
 
 export const Button = styled.button`
-  display: block;
-  align-self: end;
   padding: 0.625rem;
   height: 2.4375rem;
   font-size: 0.875rem;

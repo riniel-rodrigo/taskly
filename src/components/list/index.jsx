@@ -36,7 +36,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
             order: index,
         }));
         try {
-            const res = await axios.put("http://localhost:3000/", tasksToUpdate);
+            const res = await axios.put("https://api-taskly-production.up.railway.app/", tasksToUpdate);
             console.log("Resposta do backend:", res.data);
             setTasks(updatedTasks);
         } catch (error) {
@@ -60,7 +60,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                         <S.ButtonToast
                             onClick={async () => {
                                 await axios
-                                    .delete("http://localhost:3000/" + id)
+                                    .delete("https://api-taskly-production.up.railway.app/" + id)
                                     .then(({ data }) => {
                                         const newArray = tasks.filter((task) => task.id !== id);
                                         setTasks(newArray);
@@ -100,7 +100,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                             <S.TaskId>Identificador: {item.id}</S.TaskId>
 
                             <S.TaskPrice style={{ color: item.price >= 1000 ? "#b69121" : "inherit" }}>
-                                Custo: R$ {item.price}
+                                Custo: R$ {Number(item.price).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </S.TaskPrice>
 
                             <S.TaskDate>

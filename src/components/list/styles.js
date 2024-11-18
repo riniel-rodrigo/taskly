@@ -47,9 +47,8 @@ export const TaskName = styled.h3`
   font-weight: 600;
   color: #333333;
   margin-bottom: 0.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-right:0.4rem ;
+  white-space: pre-wrap;
   cursor: pointer;
 `;
 
