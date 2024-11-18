@@ -38,17 +38,29 @@ export const CardContent = styled.div`
   flex-grow: 1;
 `;
 
+export const CardHeader = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+`;
+
 export const TaskId = styled.div`
   color: #666666;
 `;
 
 export const TaskName = styled.h3`
+  max-width: 100%;
+  margin-right: 3rem;
   font-size: 1em;
   font-weight: 600;
   color: #333333;
   margin-bottom: 0.5rem;
-  margin-right:0.4rem ;
-  white-space: pre-wrap;
+  white-space : pre-wrap ;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  display: block;
+  line-height: 1.4; 
   cursor: pointer;
 `;
 
@@ -112,12 +124,6 @@ export const ButtonToast = styled.div`
     background-color: ${({ variant }) =>
       variant === "danger" ? "#c9302c" : "#4b6f5e"};
   }
-`;
-
-export const CardHeader = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
 `;
 
 export const ButtonsMoveBox = styled.div`

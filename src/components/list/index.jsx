@@ -35,7 +35,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
             id: task.id,
             order: index,
         }));
-    
+
         try {
             const res = await axios.put("https://api-taskly-production.up.railway.app/", tasksToUpdate);
             console.log("Resposta do backend:", res.data);

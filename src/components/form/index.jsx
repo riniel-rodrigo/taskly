@@ -92,9 +92,9 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
     const handleOrderChange = (e) => {
         const value = e.target.value;
-    
+
         const regex = /^[0-9]*$/;
-    
+
         if (regex.test(value) || value === "") {
             setOrder(value);
         }
@@ -164,7 +164,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                     </S.InputArea>
                     <S.InputArea>
                         <S.Label>Ordem</S.Label>
-                        <S.Input name="order" value={order} onChange={handleOrderChange} maxLength={8}/>
+                        <S.Input name="order" value={order} onChange={handleOrderChange} maxLength={8} />
                     </S.InputArea>
                     <S.Buttons style={{ alignItems: nameLength >= maxLength ? "center" : "end", marginBottom: nameLength >= maxLength ? "0" : "3px" }}>
                         <S.Button title="Salvar tarefa" type="submit">Salvar</S.Button>
