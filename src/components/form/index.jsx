@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState  } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { MdOutlineCancel } from "react-icons/md";
@@ -7,8 +7,10 @@ import * as S from "./styles";
 
 const Form = ({ getTasks, onEdit, setOnEdit }) => {
     const ref = useRef();
-    const [nameLength, setNameLength] = useState(0); 
+    const [nameLength, setNameLength] = useState(0);
     const maxLength = 100;
+    const [price, setPrice] = useState("");
+    const [order, setOrder] = useState("");
 
     useEffect(() => {
         if (onEdit) {
@@ -18,6 +20,8 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
             task.deadline.value = new Date(onEdit.deadline).toISOString().slice(0, 10);
             task.order.value = onEdit.order;
 
+            setPrice(onEdit.price);
+            setOrder(onEdit.order);
             setNameLength(onEdit.name.length);
             task.name.focus();
         }
@@ -44,6 +48,10 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         const maxCost = 99999999;
         if (task.price.value > maxCost) {
             return toast.error(`O custo não pode ser maior que R$${maxCost.toLocaleString()}.`);
+        }
+
+        if (task.order.value > maxCost) {
+            return toast.error(`Insira um número de ordem válido.`);
         }
 
         if (onEdit) {
@@ -77,6 +85,29 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
         setOnEdit(null);
         getTasks();
+
+        setPrice("");
+        setOrder("");
+    };
+
+    const handleOrderChange = (e) => {
+        const value = e.target.value;
+    
+        const regex = /^[0-9]*$/;
+    
+        if (regex.test(value) || value === "") {
+            setOrder(value);
+        }
+    };
+
+    const handlePriceChange = (e) => {
+        const value = e.target.value;
+
+        const regex = /^[0-9]*[.,]?[0-9]{0,2}$/;
+
+        if (regex.test(value) || value === "") {
+            setPrice(value);
+        }
     };
 
     const handleNameChange = (e) => {
@@ -106,6 +137,8 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
         ref.current.order.value = "";
 
         setNameLength(0);
+
+        setPrice("");
     };
 
     return (
@@ -115,7 +148,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                 <S.FormContainer ref={ref} onSubmit={handleSubmit}>
                     <S.InputArea>
                         <S.Label>Nome</S.Label>
-                        <S.Input onChange={handleNameChange} maxLength={maxLength}  name="name" />
+                        <S.Input name="name" onChange={handleNameChange} maxLength={maxLength} />
 
                         {nameLength >= maxLength && (
                             <S.NameWarning>Atingiu o máximo de caracteres.</S.NameWarning>
@@ -123,7 +156,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                     </S.InputArea>
                     <S.InputArea>
                         <S.Label>Custo</S.Label>
-                        <S.Input name="price" />
+                        <S.Input name="price" value={price} onChange={handlePriceChange} maxLength={8} />
                     </S.InputArea>
                     <S.InputArea>
                         <S.Label>Data limite</S.Label>
@@ -131,7 +164,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                     </S.InputArea>
                     <S.InputArea>
                         <S.Label>Ordem</S.Label>
-                        <S.Input name="order" />
+                        <S.Input name="order" value={order} onChange={handleOrderChange} maxLength={8}/>
                     </S.InputArea>
                     <S.Buttons style={{ alignItems: nameLength >= maxLength ? "center" : "end", marginBottom: nameLength >= maxLength ? "0" : "3px" }}>
                         <S.Button title="Salvar tarefa" type="submit">Salvar</S.Button>
