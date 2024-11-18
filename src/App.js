@@ -15,9 +15,7 @@ function App() {
 
   const getTasks = async () => {
     try {
-      const res = await axios.get(
-        "https://api-taskly-production.up.railway.app/"
-      );
+      const res = await axios.get("http://localhost:3000/");
       setTasks(res.data.sort((a, b) => (a.order > b.order ? 1 : -1)));
     } catch (error) {
       toast.error(error);

@@ -8,38 +8,42 @@ import * as S from "./styles";
 
 const List = ({ tasks, setTasks, setOnEdit }) => {
 
-    // func moveUp
     const moveUp = async (id, index) => {
         if (index === 0) return;
-
         const updatedTasks = [...tasks];
         [updatedTasks[index], updatedTasks[index - 1]] = [updatedTasks[index - 1], updatedTasks[index]];
-
+        updatedTasks.forEach((task, idx) => {
+            task.order = idx;
+        });
         setTasks(updatedTasks);
-
         await updateTaskOrder(updatedTasks);
     };
 
-    // func moveDown
     const moveDown = async (id, index) => {
         if (index === tasks.length - 1) return;
-
         const updatedTasks = [...tasks];
         [updatedTasks[index], updatedTasks[index + 1]] = [updatedTasks[index + 1], updatedTasks[index]];
-
+        updatedTasks.forEach((task, idx) => {
+            task.order = idx;
+        });
         setTasks(updatedTasks);
-
         await updateTaskOrder(updatedTasks);
     };
 
-    // func order
     const updateTaskOrder = async (updatedTasks) => {
+        const tasksToUpdate = updatedTasks.map((task, index) => ({
+            id: task.id,
+            order: index,
+        }));
         try {
-            await axios.put("https://api-taskly-production.up.railway.app/reorder", updatedTasks);
+            const res = await axios.put("http://localhost:3000/", tasksToUpdate);
+            console.log("Resposta do backend:", res.data);
+            setTasks(updatedTasks);
         } catch (error) {
             toast.error("Erro ao atualizar a ordem das tarefas.");
         }
     };
+
 
     // func edit
     const handleEdit = (item) => {
@@ -56,7 +60,7 @@ const List = ({ tasks, setTasks, setOnEdit }) => {
                         <S.ButtonToast
                             onClick={async () => {
                                 await axios
-                                    .delete("https://api-taskly-production.up.railway.app/" + id)
+                                    .delete("http://localhost:3000/" + id)
                                     .then(({ data }) => {
                                         const newArray = tasks.filter((task) => task.id !== id);
                                         setTasks(newArray);

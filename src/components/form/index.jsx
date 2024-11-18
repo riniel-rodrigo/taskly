@@ -45,7 +45,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
         if (onEdit) {
             await axios
-                .put("https://api-taskly-production.up.railway.app/" + onEdit.id, {
+                .put("http://localhost:3000/" + onEdit.id, {
                     name: task.name.value,
                     price: task.price.value,
                     deadline: task.deadline.value,
@@ -55,7 +55,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
                 .catch(({ data }) => toast.error(data));
         } else {
             await axios
-                .post("https://api-taskly-production.up.railway.app/", {
+                .post("http://localhost:3000/", {
                     name: task.name.value,
                     price: task.price.value,
                     deadline: task.deadline.value,
@@ -76,7 +76,7 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
     const checkTaskName = async (name, id) => {
         try {
-            const response = await axios.get("https://api-taskly-production.up.railway.app/");
+            const response = await axios.get("http://localhost:3000/");
             const existingTasks = response.data;
     
             return existingTasks.some(
