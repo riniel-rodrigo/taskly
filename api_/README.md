@@ -1,1 +1,1 @@
-Aqui está o código completo da API desenvolvida com Node e Express. A API está hospedada no Heroku e o código é disponibilizado aqui apenas para visualização.
+Aqui está o código completo da API desenvolvida com Node e Express. A API está hospedada no Railway e o código é disponibilizado aqui apenas para visualização.
