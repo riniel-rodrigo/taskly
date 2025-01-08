@@ -34,6 +34,8 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
 
     const task = ref.current;
 
+    task.price.value = task.price.value.replace(",", ".");
+
     if (
       !task.name.value ||
       !task.price.value ||
@@ -41,6 +43,14 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
       !task.order.value
     ) {
       return toast.warn("Preencha todos os campos!");
+    }
+
+    if (isNaN(task.price.value)) {
+      return toast.error("O custo deve ser um número válido.");
+    }
+
+    if (parseFloat(task.price.value) < 0) {
+      return toast.error("O custo da tarefa não pode ser negativo.");
     }
 
     const taskExists = await checkTaskName(
@@ -52,10 +62,6 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
       (!onEdit || (onEdit && onEdit.name !== task.name.value))
     ) {
       return toast.error("Já existe uma tarefa com esse nome.");
-    }
-
-    if (task.price.value < 0) {
-      return toast.error("O custo da tarefa não pode ser negativo.");
     }
 
     const maxCost = 99999999;
@@ -116,7 +122,9 @@ const Form = ({ getTasks, onEdit, setOnEdit }) => {
   };
 
   const handlePriceChange = (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
+
+    value = value.replace(",", ".");
 
     const regex = /^[0-9]*[.,]?[0-9]{0,2}$/;
 
